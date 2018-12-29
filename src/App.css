@@ -7,8 +7,11 @@
   padding: 3em 0;
 }
 
-.input,
-h2 {
-  margin: 1em auto;
-  max-width: 33.333333%;
+.inputInActive {
+  border: 1px solid red;
+  border-radius: 2px;
+}
+
+.inputActive {
+  border-color: #cdcdcd;
 }
