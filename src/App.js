@@ -8,7 +8,7 @@ class App extends Component {
       firstName: '',
       lastName: '',
       isFriendly: true,
-      textAreaValue: 'some '
+      gender: ''
     }
   }
 
@@ -71,9 +71,31 @@ class App extends Component {
                 onChange={this.handleChange}
               /> Is friendly?
             </label>
-
+            <br />
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                value="male"
+                checked={this.state.gender === `male`}
+                onChange={this.handleChange}
+              /> Male
+            </label>
+            <br />
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                value="female"
+                checked={this.state.gender === `female`}
+                onChange={this.handleChange}
+              /> Female
+            </label>
 
             <h2>{this.state.firstName} {this.state.lastName}</h2>
+            {
+              this.state.gender !== '' ? <h3>You are a {this.state.gender}</h3> : null
+            }
           </form>
         </div> {/**End of form__container */}
       </div>
