@@ -6,16 +6,19 @@ class App extends Component {
     super(props);
     this.state = {
       firstName: '',
-      lastName: ''
+      lastName: '',
+      isFriendly: true,
+      textAreaValue: 'some '
     }
   }
 
   handleChange = (e) => {
-    const {name, value} = e.target
+    const {name, value, type, checked} = e.target
+
     e.target.value !== '' ? e.target.className += 'inputActive' : e.target.classList += ''
-    this.setState({
-      [name]: value
-    })
+
+    // check input type to conditionaly determine which state to employ
+    type === "checkbox" ? this.setState({[name]: checked}) : this.setState({[name]: value})
   }
 
   render() {
@@ -30,25 +33,46 @@ class App extends Component {
 
             the value attribute 'value={this.state.firstName}' insures that state is the one source of truth and is what is called a 'controled form' perfectly matching up with what is in state.
             */}
-            <label htmlFor="firstName">Name</label>
-            <input
-            id="firstName"
-            className={`inputInActive `}
-            type="text"
-            value={this.state.firstName}
-            name="firstName"
-            placeholder={`First Name`}
-            onChange={this.handleChange}/>
+            <label htmlFor="firstName"> First Name
+              <input
+                id="firstName"
+                className={`form__element inputInActive `}
+                type="text"
+                value={this.state.firstName}
+                name="firstName"
+                placeholder={`First Name`}
+                onChange={this.handleChange}
+              />
+            </label>
 
-            <label htmlFor="lastName">Name</label>
-            <input
-            id="lastName"
-            className={`inputInActive `}
-            type="text"
-            value={this.state.lastName}
-            name="lastName"
-            placeholder={`Last Name`}
-            onChange={this.handleChange}/>
+            <label htmlFor="lastName"> Last Name
+              <input
+                id="lastName"
+                className={`form__element inputInActive `}
+                type="text"
+                value={this.state.lastName}
+                name="lastName"
+                placeholder={`Last Name`}
+                onChange={this.handleChange}
+              />
+            </label>
+
+            <textarea
+              className={`form__element`}
+              value={`Some default value`}
+              onChange={this.handleChange}
+            />
+            <br />
+            <label>
+              <input
+                type="checkbox"
+                name="isFriendly"
+                checked={this.state.isFriendly}
+                onChange={this.handleChange}
+              /> Is friendly?
+            </label>
+
+
             <h2>{this.state.firstName} {this.state.lastName}</h2>
           </form>
         </div> {/**End of form__container */}

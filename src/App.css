@@ -7,9 +7,15 @@
   padding: 3em 0;
 }
 
+.form__element {
+  margin: .5em 0 1em 0;
+  padding: 1em 1em;
+}
+
 .inputInActive {
   border: 1px solid red;
   border-radius: 2px;
+  margin:.5em 0 1em 15px;
 }
 
 .inputActive {
