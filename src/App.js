@@ -13,6 +13,11 @@ class App extends Component {
     }
   }
 
+  handleSubmit = (e) => {
+    console.log('form submit');
+    e.preventDefault();
+  }
+
   handleChange = (e) => {
     const {name, value, type, checked} = e.target
 
@@ -30,7 +35,10 @@ class App extends Component {
     return (
       <div className="App">
         <div className="form__container">
-          <form className="form">
+          <form
+            className="form"
+            onSubmit={this.handleSubmit}
+          >
             {/*
             name is an important attribute because we can use '[e.target.name]: e.target.value' in the handleChange function
             for multiple input elements, in this case using object destructuring 'const {name, value} = e.target', then '[name]: value' in setState to avoid drilling down into the event and any possible bugs from doing so.
@@ -119,7 +127,8 @@ class App extends Component {
               <h2>Your favorite color is <span style={favColorStyle}>{this.state.favColor}</span>.</h2>
               : null
             }
-
+            {/**Button will handle submit with onSubmit on form element */}
+            <button>Submit</button>
           </form>
         </div> {/**End of form__container */}
       </div>
