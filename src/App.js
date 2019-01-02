@@ -8,7 +8,8 @@ class App extends Component {
       firstName: '',
       lastName: '',
       isFriendly: true,
-      gender: ''
+      gender: '',
+      favColor: 'blue'
     }
   }
 
@@ -18,11 +19,14 @@ class App extends Component {
     e.target.value !== '' ? e.target.className += 'inputActive' : e.target.classList += ''
 
     // check input type to conditionaly determine which state to employ
-    type === "checkbox" ? this.setState({[name]: checked}) : this.setState({[name]: value})
+    type === "checkbox" ? this.setState({[name]: checked}) :    this.setState({[name]: value})
   }
 
   render() {
     // import { originalName as alias } from 'module'
+    const favColorStyle = {
+      color: this.state.favColor
+    }
     return (
       <div className="App">
         <div className="form__container">
@@ -93,9 +97,29 @@ class App extends Component {
             </label>
 
             <h2>{this.state.firstName} {this.state.lastName}</h2>
+            {/** conditionaly render gender statement */}
             {
               this.state.gender !== '' ? <h3>You are a {this.state.gender}</h3> : null
             }
+
+            <label>Favorite Color</label>
+            <select
+              defaultValue={this.state.favColor}
+              onChange={this.handleChange}
+              name="favColor"
+            >
+              <option value="blue">Blue</option>
+              <option value="green">Green</option>
+              <option value="red">Red</option>
+              <option value="orange">Orange</option>
+              <option value="yellow">Yellow</option>
+            </select>
+            {
+              this.state.favColor !== '' ?
+              <h2>Your favorite color is <span style={favColorStyle}>{this.state.favColor}</span>.</h2>
+              : null
+            }
+
           </form>
         </div> {/**End of form__container */}
       </div>
